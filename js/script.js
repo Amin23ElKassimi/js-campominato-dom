@@ -41,6 +41,10 @@ play.addEventListener('click', function(){
     // RESET
     mainContentEl.innerHTML = '';
 
+    while(listaCoiNumeriGeneratiFinOra.length > 0) {
+        listaCoiNumeriGeneratiFinOra.pop();
+    }
+
     // Difficolta
     const difficulty = parseInt(document.getElementById('inDiffic').value);
 
@@ -132,14 +136,21 @@ play.addEventListener('click', function(){
         }
     }
 
-    while(listaCoiNumeriGeneratiFinOra.length > 0) {
-        listaCoiNumeriGeneratiFinOra.pop();
+    //  Generazione delle bombe in base al numero massimo delle caselle
+    let arg2 = 100;
+    if ( difficulty === 2 ) {
+        arg2 = 81;
     }
+    else if ( difficulty === 3 ) {
+        arg2 = 49;
+    }
+    console.log(arg2);
 
     // --------- Algoritmo di conrollo dei numeri all'interno della lista dei numeri generati:---------
     while (listaCoiNumeriGeneratiFinOra.length < 16) {
+
         // Invocazione Fun. che genera un numero casuale tra 0 e 100
-        const numgeneratd = generaNumeroRandomicoUnico(1,100);
+        const numgeneratd = generaNumeroRandomicoUnico(1,arg2);
         // Controllo se il numero generato è già presente nella lista
         if (!listaCoiNumeriGeneratiFinOra.includes(numgeneratd) ) {
             listaCoiNumeriGeneratiFinOra.push(numgeneratd);
