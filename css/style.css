@@ -36,7 +36,7 @@ section.main-content{
 .square2{
     width: calc(100% / 9);
     height: calc(100% / 9);
-    border: 2px solid rgb(235, 26, 26);
+    border: 2px solid yellow;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@ section.main-content{
 .square3{
     width: calc(100% / 7);
     height: calc(100% / 7);
-    border: 2px solid green;
+    border: 2px solid red;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;

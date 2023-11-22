@@ -59,8 +59,6 @@ play.addEventListener('click', function(){
             currentSquare.addEventListener('click', function(){
                 // % metto o tolgo la classe css clicked allo stesso elemento
                 currentSquare.classList.toggle('clicked');
-                // Allert del numero selezionato
-                alert(squareContent);
                 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
                 // - abbiamo calpestato una bomba
                 // - la cella si colora di rosso e la partita termina.
@@ -75,7 +73,7 @@ play.addEventListener('click', function(){
             
         }
     }
-    if (difficulty === 2) {
+    else if (difficulty === 2) {
         // # per 100 iterazioni...
         for (let i = 1 ; i <= 81 ; i++){
         // # creo un nuovo elemento quadrato, una nuova cella nel mio quadrato
@@ -91,8 +89,6 @@ play.addEventListener('click', function(){
             currentSquare.addEventListener('click', function(){
                 // % metto o tolgo la classe css clicked allo stesso elemento
                 currentSquare.classList.toggle('clicked');
-                // Allert del numero selezionato
-                alert(squareContent);
                 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
                 // - abbiamo calpestato una bomba
                 // - la cella si colora di rosso e la partita termina.
@@ -106,7 +102,7 @@ play.addEventListener('click', function(){
             mainContentEl.appendChild(currentSquare);
         }
     }
-    if (difficulty === 3) {
+    else if (difficulty === 3) {
         // # per 100 iterazioni...
         for (let i = 1 ; i <= 49 ; i++){
         // # creo un nuovo elemento quadrato, una nuova cella nel mio quadrato
@@ -122,8 +118,6 @@ play.addEventListener('click', function(){
             currentSquare.addEventListener('click', function(){
                 // % metto o tolgo la classe css clicked allo stesso elemento
                 currentSquare.classList.toggle('clicked');
-                // Allert del numero selezionato
-                alert(squareContent);
                 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
                 // - abbiamo calpestato una bomba
                 // - la cella si colora di rosso e la partita termina.
