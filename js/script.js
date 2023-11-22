@@ -109,3 +109,23 @@ play.addEventListener('click', function(){
 
 
 
+// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe
+
+// nella stessa cella può essere posizionata al massimo una bomba, 
+// perciò nell’array delle bombe non potranno esserci due numeri uguali.
+
+
+// Funzione che genera numero randomico unico 
+// Array listaCoiNumeriGeneratiFinOra 
+
+const listaCoiNumeriGeneratiFinOra = [];
+
+function generaNumeroRandomicoUnico(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+generaNumeroRandomicoUnico(1)
+
+
+
