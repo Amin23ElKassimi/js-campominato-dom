@@ -1,5 +1,6 @@
 
 // --------- Functions ---------
+
 // Funzione 01       funzione che genera un nuovo elemento quadrato
 function generateSquare() {
         const squareElement = document.createElement('div');
@@ -18,15 +19,24 @@ function generateSquare3() {
     squareElement.classList.add('square3');
     return squareElement;
 }
+// Funzione 04       funzione che genera un nuovo numero
+function generaNumeroRandomicoUnico(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-// --------- Tags ---------
+
+// --------- Tags & Arrays ---------
+
 // recupero il parent all'interno del quale voglio inserire i miei elementi
 const mainContentEl = document.querySelector('main .main-content');
 // Play button
 const play = document.getElementById('play');
+// Array listaCoiNumeriGeneratiFinOra 
+let listaCoiNumeriGeneratiFinOra = [];
+
+// ######################## Algoritmi ########################
 
 
-// --------- Algorithm ---------
 play.addEventListener('click', function(){
     // RESET
     mainContentEl.innerHTML = '';
@@ -51,10 +61,18 @@ play.addEventListener('click', function(){
                 currentSquare.classList.toggle('clicked');
                 // Allert del numero selezionato
                 alert(squareContent);
+                // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
+                // - abbiamo calpestato una bomba
+                // - la cella si colora di rosso e la partita termina.
+                if (listaCoiNumeriGeneratiFinOra.includes(squareContent)) {
+                    currentSquare.classList.add('bg-danger');
+                    alert('Bomba! Game over!');
+                }
             });
         
             // & aggiungo la cella completa all'elemento a cui voglio aggiungerla nel DOM.
             mainContentEl.appendChild(currentSquare);
+            
         }
     }
     if (difficulty === 2) {
@@ -75,6 +93,13 @@ play.addEventListener('click', function(){
                 currentSquare.classList.toggle('clicked');
                 // Allert del numero selezionato
                 alert(squareContent);
+                // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
+                // - abbiamo calpestato una bomba
+                // - la cella si colora di rosso e la partita termina.
+                if (listaCoiNumeriGeneratiFinOra.includes(squareContent)) {
+                    currentSquare.classList.add('bg-danger');
+                    alert('Bomba! Game over!');
+                }
             });
         
             // & aggiungo la cella completa all'elemento a cui voglio aggiungerla nel DOM.
@@ -99,33 +124,41 @@ play.addEventListener('click', function(){
                 currentSquare.classList.toggle('clicked');
                 // Allert del numero selezionato
                 alert(squareContent);
+                // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
+                // - abbiamo calpestato una bomba
+                // - la cella si colora di rosso e la partita termina.
+                if (listaCoiNumeriGeneratiFinOra.includes(squareContent)) {
+                    currentSquare.classList.add('bg-danger');
+                    alert('Bomba! Game over!');
+                }
             });
         
             // & aggiungo la cella completa all'elemento a cui voglio aggiungerla nel DOM.
             mainContentEl.appendChild(currentSquare);
         }
     }
+
+    while(listaCoiNumeriGeneratiFinOra.length > 0) {
+        listaCoiNumeriGeneratiFinOra.pop();
+    }
+
+    // --------- Algoritmo di conrollo dei numeri all'interno della lista dei numeri generati:---------
+    while (listaCoiNumeriGeneratiFinOra.length < 16) {
+        // Invocazione Fun. che genera un numero casuale tra 0 e 100
+        const numgeneratd = generaNumeroRandomicoUnico(1,100);
+        // Controllo se il numero generato è già presente nella lista
+        if (!listaCoiNumeriGeneratiFinOra.includes(numgeneratd) ) {
+            listaCoiNumeriGeneratiFinOra.push(numgeneratd);
+        }
+    }
+
+    console.log(listaCoiNumeriGeneratiFinOra)
+
 });
 
 
 
-// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe
-
-// nella stessa cella può essere posizionata al massimo una bomba, 
-// perciò nell’array delle bombe non potranno esserci due numeri uguali.
-
-
-// Funzione che genera numero randomico unico 
-// Array listaCoiNumeriGeneratiFinOra 
-
-const listaCoiNumeriGeneratiFinOra = [];
-
-function generaNumeroRandomicoUnico(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-generaNumeroRandomicoUnico(1)
-
-
-
+// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
+// - abbiamo calpestato una bomba
+// - la cella si colora di rosso e la partita termina.
+// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
