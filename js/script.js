@@ -24,13 +24,16 @@ function generaNumeroRandomicoUnico(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+// --------- Tags & Arrays
 // --------- Tags & Arrays ---------
 
 // recupero il parent all'interno del quale voglio inserire i miei elementi
 const mainContentEl = document.querySelector('main .main-content');
 // Play button
 const play = document.getElementById('play');
+// Score 
+const outScore = document.getElementById('score');
+
 // Array listaCoiNumeriGeneratiFinOra 
 let listaCoiNumeriGeneratiFinOra = [];
 
@@ -47,10 +50,17 @@ play.addEventListener('click', function(){
 
     // Difficolta
     const difficulty = parseInt(document.getElementById('inDiffic').value);
+    
+  
+
+    // Scores User
+    let scorePoints = 0;
 
     if (difficulty === 1) {
         // # per 100 iterazioni...
         for (let i = 1 ; i <= 100 ; i++){
+
+            // Funzione
             const currentSquare = generateSquare();
 
             // # inizializzo il suo contenuto per poterlo utilizzare anche piu' avanti
@@ -67,8 +77,16 @@ play.addEventListener('click', function(){
                 // - abbiamo calpestato una bomba
                 // - la cella si colora di rosso e la partita termina.
                 if (listaCoiNumeriGeneratiFinOra.includes(squareContent)) {
+                    mainContentEl.innerHTML = '';
                     currentSquare.classList.add('bg-danger');
                     alert('Bomba! Game over!');
+                    scorePoints = 0;
+                    outScore.innerHTML = scorePoints;
+                }
+                else {
+                    scorePoints += 1;
+                    console.log(scorePoints);
+                    outScore.innerHTML = scorePoints;
                 }
             });
         
@@ -144,7 +162,6 @@ play.addEventListener('click', function(){
     else if ( difficulty === 3 ) {
         arg2 = 49;
     }
-    console.log(arg2);
 
     // --------- Algoritmo di conrollo dei numeri all'interno della lista dei numeri generati:---------
     while (listaCoiNumeriGeneratiFinOra.length < 16) {
@@ -157,10 +174,7 @@ play.addEventListener('click', function(){
         }
     }
 
-    console.log(listaCoiNumeriGeneratiFinOra)
-
 });
-
 
 
 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati:
